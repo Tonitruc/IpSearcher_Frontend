@@ -2,7 +2,7 @@ import axios from "axios";
 import dotenv from 'dotenv';
 
 //const apiUrl = process.env.VUE_APP_API_URL
-const apiUrl = 'https://ipsearcher.onrender.com/api';
+const apiUrl = 'https://ipsearcher.onrender.com/api'; //член
 
 export const listVpns = () =>  axios.get(`${apiUrl}/vpn/all`);
 
