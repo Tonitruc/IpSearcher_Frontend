@@ -1,0 +1,120 @@
+.container {
+    top: 20px; 
+    position: relative; 
+}
+
+.add-button {
+    position: relative;
+}
+
+.add-ip-button {
+    position: relative;
+    top: 5px;
+}
+
+.table-container {
+    top: 5px;
+    position: relative;/
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+details summary {
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+}
+
+details summary::before {
+    content: '›'; /* или любой другой символ */
+    position: absolute;
+    left: 0;
+    font-size: 1em;
+    transition: transform 0.2s;
+}
+
+details[open] summary::before {
+    content: '›'; /* или любой другой символ */
+    transform: rotate(90deg);
+}
+
+.server-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.server-text {
+    flex: 1; 
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
+}
+
+.info-button, .remove-button {
+    padding: 2px 6px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.info-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease; 
+}
+
+.remove-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease; 
+}
+
+.info-button:hover {
+    background-color: #0056b3; 
+}
+
+.remove-button:hover {
+    background-color: #c82333; 
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 70%; 
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 30%; 
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: auto; 
+    text-align: center !important; 
+}
+
+.search-bar {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.add-button {
+    flex-shrink: 0;
+    margin-right: 20px;
+}
