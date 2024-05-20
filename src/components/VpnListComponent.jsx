@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { listVpns } from '../service/VpnService';
+import { listVpns, deleteVpn, removeIp, addIP} from '../service/VpnService';
 import { useNavigate } from 'react-router-dom';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import Modal from './IpInfo';
 import { getIpEntity } from '../service/IpEntityService';
+import ModalVpnIp from './AddVpnIp';
 
 const VpnListComponent = () => {
     const [vpns, setVpns] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIpIsOpen, setModalIpIsOpen] = useState(false);
     const [selectedIp, setSelectedIp] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const navigator = useNavigate();
@@ -29,8 +31,27 @@ const VpnListComponent = () => {
     }
 
     function updateVpn(id) {
-        console.log(id);
         navigator(`/edit-vpn/${id}`);
+    }
+
+    function removeVpn(id) {
+        deleteVpn(id).then(() => {
+            window.location.reload();
+        })
+    }
+
+    function removeVpnIp(id, ip) {
+        removeIp(id, ip).then(() => {
+            window.location.reload();
+        });
+    }
+
+    const openModalAddVpnIp = () => {
+        setModalIpIsOpen(true);
+    }
+
+    const closeModalAddVpnIp = () => {
+        setModalIpIsOpen(false);
     }
 
     function openModal() {
@@ -95,19 +116,21 @@ const VpnListComponent = () => {
                                         <li key={index} className="server-item">
                                         <span className="server-text">{ip}</span> 
                                         <div className="button-group">
-                                            <button className="info-button" onClick={(e) => {selectIp(ip)}}>Info</button>
-                                            <button className="remove-button">Remove</button>
+                                            <button className="info-button" onClick={(e) => selectIp(ip)}>Info</button>
+                                            <button className="remove-button" onClick={(e) => removeVpnIp(vpn.id, ip)}>Remove</button>
                                         </div>
                                         </li>
                                     ))}
-                                    <button className="info-button add-ip-button">Add IP</button>
+                                    <button className="info-button add-ip-button" onClick={() => openModalAddVpnIp()}>Add IP</button>
                                 </ul>
+                                {modalIpIsOpen && (<ModalVpnIp onClose={closeModalAddVpnIp} vpnId={vpn.id} />
+)}
                             </details>
                         </td>
                         <td>
                             <div className="button-group">
                                 <button className="info-button" onClick={() => updateVpn(vpn.id)}>Update</button>
-                                <button className="remove-button">Remove</button>
+                                <button className="remove-button" onClick={() => removeVpn(vpn.id)}>Remove</button>
                             </div>
                         </td>
                     </tr>

@@ -1,0 +1,27 @@
+.ip-modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Цвет затемнения */
+    z-index: 1000; /* Убедитесь, что слой затемнения находится выше всех остальных элементов */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ip-modal {
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ip-modal input {
+    width: 100%;
+    margin-bottom: 10px; 
+}
+
+

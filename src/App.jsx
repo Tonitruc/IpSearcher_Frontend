@@ -15,7 +15,6 @@ function App() {
     <HeaderComponent />
     <BrowserRouter>
         <Routes>
-          //http://localhost:3001
           <Route path='/' element={<VpnListComponent />}></Route>
           <Route path='/vpns' element = {<VpnListComponent />}></Route>
           <Route path='/add-vpn' element = {<VpnComponent />}></Route>

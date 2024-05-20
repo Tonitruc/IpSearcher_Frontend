@@ -1,7 +1,10 @@
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getIpEntity = (ip) => {
-    const url = 'http://localhost:8080/api/ip/search/?ip=${ip}';
+    console.log(ip);
+    const url = `${apiUrl}/api/ip/search?ip=${ip}`;
+
     
     return axios.post(url)
     .then(response => {

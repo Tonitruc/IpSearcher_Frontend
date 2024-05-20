@@ -24,7 +24,6 @@ const VpnComponent = () => {
     }, []);
 
     useEffect(() => {
-        console.log(vpnId);
         if(vpnId) {
             getVpnById(vpnId).then((response) => {
                 console.log(response.data);
@@ -124,7 +123,6 @@ const VpnComponent = () => {
 
     function pageTitle() {
         if(vpnId) {
-            console.log(process.env.REACT_APP_API_URL);
             return <h2 className='text-center'>Update VPN</h2>
         } else {
             return <h2 className='text-center'>Add VPN</h2>

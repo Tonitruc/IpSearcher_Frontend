@@ -1,13 +1,16 @@
 import axios from "axios";
-import dotenv from 'dotenv';
+const apiUrl = import.meta.env.VITE_API_URL;
 
-//const apiUrl = process.env.VUE_APP_API_URL
-const apiUrl = 'https://ipsearcher.onrender.com/api'; //член
+export const listVpns = () =>  axios.get(`${apiUrl}/api/vpn/all`);
 
-export const listVpns = () =>  axios.get(`${apiUrl}/vpn/all`);
+export const getVpnById = (id) =>  axios.get(`${apiUrl}/api/vpn/get/` + id);
 
-export const getVpnById = (id) =>  axios.get(`${apiUrl}/vpn/get/` + id);
+export const addVpn = (vpn) =>  axios.post(`${apiUrl}/api/vpn/` + "add_with_exist_ip", vpn);
 
-export const addVpn = (vpn) =>  axios.post(`${apiUrl}/vpn/` + "add_with_exist_ip", vpn);
+export const updateVpn = (id, vpn) => axios.put(`${apiUrl}/api/vpn/` + "update?id=" + id, vpn);
 
-export const updateVpn = (id, vpn) => axios.put(`${apiUrl}/vpn/` + "update?id=" + id, vpn); 
+export const deleteVpn = (id) => axios.delete(`${apiUrl}/api/vpn/` + "delete/" + id); 
+
+export const removeIp = (id, ip) => axios.put(`${apiUrl}/api/vpn/remove_ip/${id}?ip=${ip}`);
+
+export const addIP = (id, ip) => axios.put(`${apiUrl}/api/vpn/add_ip/${id}?ip=${ip}`);
