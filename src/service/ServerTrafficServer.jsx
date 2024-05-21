@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = 'https://ipsearcher.onrender.com';
 
 export const serverTrafficsList = () =>  axios.get(`${apiUrl}/api/server_traffic/all`);
 

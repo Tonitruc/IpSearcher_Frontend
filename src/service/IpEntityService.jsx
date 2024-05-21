@@ -1,8 +1,8 @@
 import axios from "axios";
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = 'https://ipsearcher.onrender.com';
 
 export const getIpEntity = (ip) => {
-    const url = `https://ipsearcher.onrender.com/api/ip/search?ip=${ip}`;
+    const url = `${apiUrl}/api/ip/search?ip=${ip}`;
     
     return axios.post(url)
     .then(response => {
@@ -16,7 +16,7 @@ export const getIpEntity = (ip) => {
 };
 
 export const addIpWithTraffic = (ip, id) => {
-    const url = `https://ipsearcher.onrender.com/api/ip/ip_with_traffic`;
+    const url = `${apiUrl}/api/ip/ip_with_traffic`;
 
     const ipEntityRequest = {query: ip, serverTrafficId: id};
     return axios.post(url, ipEntityRequest).then(response => {
