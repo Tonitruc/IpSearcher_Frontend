@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { addIP } from '../service/VpnService';
 import './AddVpnIpStyle.css';
 import {addServerTraffic} from '../service/ServerTrafficServer';
+import { addIpWithTraffic } from '../service/IpEntityService';
 
 const ModalVpnIp = ({ vpnId, onClose }) => {
     const [trafficName, setTrafficName] = useState('');
@@ -9,17 +10,19 @@ const ModalVpnIp = ({ vpnId, onClose }) => {
 
     const handleSave = () => {
         const traffic = {trafficName};
-        addServerTraffic({ trafficName }).then(() => {
-            addIP(vpnId, ip)
-            .then(() => {
-                setTrafficName('');
-                setIp('');
-                onClose();
-                window.location.reload();
+        addServerTraffic({ trafficName }).then((response) => {
+            addIpWithTraffic(ip, response.id).then(() => {
+                addIP(vpnId, ip)
+                .then(() => {
+                    setTrafficName('');
+                    setIp('');
+                    onClose();
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error adding IP:', error);
+                });
             })
-            .catch(error => {
-                console.error('Error adding IP:', error);
-            });
         })
     };
 

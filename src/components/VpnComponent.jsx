@@ -38,7 +38,6 @@ const VpnComponent = () => {
         let valid = true;
 
         const errorsCopy = {... errors}
-
         if(!vpns.every(vpn => vpn.name != name)) {
             errorsCopy.name = 'The name is already taken';
             valid = false;
@@ -107,7 +106,6 @@ const VpnComponent = () => {
             const vpn = {name, ipEntities}
             
             if(vpnId) {
-                console.log(vpn);
                 updateVpn(vpnId, vpn).then((response) => {
                     console.log(response.data);
                     navigator('/vpns')
@@ -138,7 +136,7 @@ const VpnComponent = () => {
                         pageTitle()
                     }
                     <div className='card-body'>
-                        <Form onSubmit={saveVpn}>
+                        <Form onSubmit={(e) => saveVpn(e)}>
                             <Form.Group className='mb-2'>
                                 <Form.Label>VPN name</Form.Label>
                                 <Form.Control
